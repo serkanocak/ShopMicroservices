@@ -9,6 +9,16 @@ builder.AddSerilogWithElasticsearch("YarpApiGateway");
 
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowAnyOrigin();
+    });
+});
+
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
@@ -24,6 +34,8 @@ builder.Services.AddRateLimiter(rateLimiterOptions =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("AllowAll");
+
 app.UseRateLimiter();
 
 app.UseSerilogRequestLogging();

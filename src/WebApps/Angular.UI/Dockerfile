@@ -1,5 +1,5 @@
 # Stage 1: Build Angular application
-FROM node:21-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
@@ -18,4 +18,7 @@ COPY --from=build /app/dist/Angular.UI/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
+EXPOSE 81
+
+
 CMD ["nginx", "-g", "daemon off;"]
