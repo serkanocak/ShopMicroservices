@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // --- Serilog + Elasticsearch Logging ---
 builder.AddSerilogWithElasticsearch("YarpApiGateway");
 
+
 // Add services to the container.
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));

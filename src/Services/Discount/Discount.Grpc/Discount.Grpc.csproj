@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Protos\discount.proto" />
+    
   </ItemGroup>
 
   <ItemGroup>
