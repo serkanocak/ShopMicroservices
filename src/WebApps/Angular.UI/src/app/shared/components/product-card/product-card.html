@@ -1,0 +1,33 @@
+<div class="product-card glass-panel-interactive animate-fade-in">
+  <a [routerLink]="['/products', product().id]" class="card-link">
+    <div class="image-container">
+      @if (product().imageFile) {
+        <img [src]="'images/product/' + product().imageFile" [alt]="product().name" class="product-image" />
+      } @else {
+        <div class="fallback-image">
+          <i class="fa-solid fa-image"></i>
+        </div>
+      }
+      <span class="price-tag">${{ product().price }}</span>
+    </div>
+    
+    <div class="product-details">
+      <div class="categories">
+        @for (cat of product().category; track cat) {
+          <span class="badge-category">{{ cat }}</span>
+        }
+      </div>
+      
+      <h3 class="product-name">{{ product().name }}</h3>
+      <p class="product-desc">{{ product().description }}</p>
+      
+      <button class="btn-premium add-btn" [disabled]="isAdding()" (click)="addToCart($event)">
+        @if (isAdding()) {
+          <i class="fa-solid fa-spinner fa-spin"></i> Adding...
+        } @else {
+          <i class="fa-solid fa-cart-plus"></i> Add to Cart
+        }
+      </button>
+    </div>
+  </a>
+</div>

@@ -1,0 +1,59 @@
+<div class="detail-container container animate-fade-in">
+  @if (isLoading()) {
+    <div class="loading-state">
+      <i class="fa-solid fa-circle-notch fa-spin spinner"></i>
+      <p>Loading product details...</p>
+    </div>
+  } @else {
+    @if (product(); as prod) {
+      <div class="product-detail-layout glass-panel">
+        <div class="image-gallery">
+          @if (prod.imageFile) {
+            <img [src]="'images/product/' + prod.imageFile" [alt]="prod.name" class="detail-image" />
+          } @else {
+            <div class="fallback-detail-image">
+              <i class="fa-solid fa-image"></i>
+            </div>
+          }
+        </div>
+        
+        <div class="info-section">
+          <div class="categories">
+            @for (cat of prod.category; track cat) {
+              <span class="badge-category">{{ cat }}</span>
+            }
+          </div>
+          
+          <h1 class="product-title">{{ prod.name }}</h1>
+          <p class="price-value">${{ prod.price }}</p>
+          
+          <p class="description">{{ prod.description }}</p>
+          
+          <div class="cart-controls">
+            <div class="qty-selector">
+              <button class="qty-btn" (click)="decrementQty()" aria-label="Decrease quantity">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <span class="qty-value">{{ quantity() }}</span>
+              <button class="qty-btn" (click)="incrementQty()" aria-label="Increase quantity">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            
+            <button class="btn-premium add-to-cart-btn" [disabled]="isAdding()" (click)="addToCart()">
+              @if (isAdding()) {
+                <i class="fa-solid fa-spinner fa-spin"></i> Adding...
+              } @else {
+                <i class="fa-solid fa-cart-plus"></i> Add {{ quantity() }} to Cart
+              }
+            </button>
+          </div>
+          
+          <a routerLink="/products" class="back-link">
+            <i class="fa-solid fa-arrow-left-long"></i> Back to Catalog
+          </a>
+        </div>
+      </div>
+    }
+  }
+</div>

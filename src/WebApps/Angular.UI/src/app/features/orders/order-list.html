@@ -1,0 +1,69 @@
+<div class="orders-container container animate-fade-in">
+  <header class="orders-header">
+    <h2>My Orders</h2>
+    <p>Track and manage your past order transactions</p>
+  </header>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <i class="fa-solid fa-circle-notch fa-spin spinner"></i>
+      <p>Retrieving your order ledger...</p>
+    </div>
+  } @else {
+    @if (orders().length === 0) {
+      <div class="empty-orders glass-panel">
+        <i class="fa-solid fa-receipt empty-icon"></i>
+        <h3>No orders found</h3>
+        <p>You haven't placed any orders yet.</p>
+        <a routerLink="/products" class="btn-premium">Start Shopping</a>
+      </div>
+    } @else {
+      <div class="orders-list-section glass-panel">
+        <div class="table-responsive">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order Name</th>
+                <th>Recipient</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Card Holder</th>
+                <th>Status</th>
+                <th class="text-right">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (order of orders(); track order.id) {
+                <tr>
+                  <td class="order-name-cell">
+                    <span class="order-name">{{ order.orderName }}</span>
+                  </td>
+                  <td>
+                    <span class="recipient">{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</span>
+                  </td>
+                  <td>
+                    <span class="email">{{ order.shippingAddress.emailAddress }}</span>
+                  </td>
+                  <td>
+                    <span class="address">{{ order.shippingAddress.addressLine }}, {{ order.shippingAddress.country }}</span>
+                  </td>
+                  <td>
+                    <span class="card-name">{{ order.payment.cardName }}</span>
+                  </td>
+                  <td>
+                    <span class="status-badge" [class]="getStatusClass(order.status)">
+                      {{ getStatusName(order.status) }}
+                    </span>
+                  </td>
+                  <td class="text-right price-cell">
+                    <span class="price">${{ getOrderTotal(order) }}</span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+  }
+</div>

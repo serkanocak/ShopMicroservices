@@ -20,6 +20,12 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 
+  angular.ui:
+    image: ${DOCKER_REGISTRY-}angularui
+    build:
+      context: .
+      dockerfile: WebApps/Angular.UI/Dockerfile
+
 volumes:
   postgres_catalog:
 

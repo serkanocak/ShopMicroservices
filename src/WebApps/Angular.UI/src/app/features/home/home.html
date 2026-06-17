@@ -1,0 +1,57 @@
+<div class="home-container container animate-fade-in">
+  <!-- Hero Carousel Section -->
+  <section class="hero-section glass-panel">
+    <div class="carousel-track">
+      @for (slide of slides; track slide.image; let idx = $index) {
+        <div class="carousel-slide" [class.active]="currentSlide() === idx">
+          <img [src]="slide.image" [alt]="slide.alt" class="slide-img" />
+          <div class="slide-overlay">
+            <h1 class="slide-title">{{ slide.alt }}</h1>
+            <p class="slide-subtitle">Experience shopping reimagined with cutting-edge tech.</p>
+            <a routerLink="/products" class="btn-premium">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      }
+    </div>
+    
+    <div class="carousel-indicators">
+      @for (slide of slides; track slide.image; let idx = $index) {
+        <button class="indicator-btn" [class.active]="currentSlide() === idx" (click)="setSlide(idx)" aria-label="Go to slide"></button>
+      }
+    </div>
+  </section>
+
+  <!-- Showcase Sections -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <i class="fa-solid fa-circle-notch fa-spin spinner"></i>
+      <p>Loading curated products...</p>
+    </div>
+  } @else {
+    <!-- Last Products -->
+    <section class="product-showcase">
+      <div class="showcase-header">
+        <h2><i class="fa-solid fa-bolt icon-highlight"></i> New Arrivals</h2>
+        <p>Checkout the latest additions to our curated collections.</p>
+      </div>
+      <div class="products-grid">
+        @for (product of lastProducts(); track product.id) {
+          <app-product-card [product]="product" />
+        }
+      </div>
+    </section>
+
+    <!-- Best Products -->
+    <section class="product-showcase">
+      <div class="showcase-header">
+        <h2><i class="fa-solid fa-fire icon-highlight"></i> Top Trending</h2>
+        <p>Our customers' all-time favorites, highly recommended.</p>
+      </div>
+      <div class="products-grid">
+        @for (product of bestProducts(); track product.id) {
+          <app-product-card [product]="product" />
+        }
+      </div>
+    </section>
+  }
+</div>

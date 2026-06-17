@@ -1,0 +1,23 @@
+<nav class="navbar glass-panel">
+  <div class="container navbar-container">
+    <a routerLink="/" class="navbar-logo">
+      <i class="fa-solid fa-bag-shopping logo-icon"></i>
+      <span class="logo-text">EShop<span class="logo-highlight">Sphere</span></span>
+    </a>
+    
+    <div class="navbar-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Home</a>
+      <a routerLink="/products" routerLinkActive="active" class="nav-link">Catalog</a>
+      <a routerLink="/orders" routerLinkActive="active" class="nav-link">My Orders</a>
+    </div>
+    
+    <div class="navbar-actions">
+      <a routerLink="/cart" class="cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        @if (basketService.cartCount() > 0) {
+          <span class="cart-badge">{{ basketService.cartCount() }}</span>
+        }
+      </a>
+    </div>
+  </div>
+</nav>

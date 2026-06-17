@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.7.11911.148 stable
+VisualStudioVersion = 18.7.11911.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Web", "WebApps\Shopping.Web\Shopping.Web.csproj", "{4DC21A64-6BEC-2157-21C9-3978B424596B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Messaging", "BuildingBlocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj", "{89BAC107-D3FD-49E8-5F7A-216B1D4B0E1F}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Angular.UI", "WebApps\Angular.UI\Angular.UI.esproj", "{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,12 @@ Global
 		{89BAC107-D3FD-49E8-5F7A-216B1D4B0E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89BAC107-D3FD-49E8-5F7A-216B1D4B0E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89BAC107-D3FD-49E8-5F7A-216B1D4B0E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +125,7 @@ Global
 		{8D6331C5-72A6-DEFA-2B59-5F115C5D739E} = {7ADDB171-0401-4CEE-9038-5291BC0E9169}
 		{4DC21A64-6BEC-2157-21C9-3978B424596B} = {E5C00847-8AE1-45F1-A8E8-116BE372CEF1}
 		{89BAC107-D3FD-49E8-5F7A-216B1D4B0E1F} = {5D088683-E898-460C-BC2C-74BD5999D4BA}
+		{96EF6D18-4879-AA97-F4C1-0B5A2E7FE939} = {E5C00847-8AE1-45F1-A8E8-116BE372CEF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {199DB967-AF95-4FA0-8BD0-3389CF5D191E}

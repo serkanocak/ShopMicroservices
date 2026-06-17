@@ -1,0 +1,139 @@
+.catalog-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  margin-top: 40px;
+  align-items: start;
+}
+
+.sidebar {
+  padding: 30px;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  position: sticky;
+  top: 110px;
+  
+  .sidebar-title {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .category-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .category-btn {
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-family-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-primary);
+    }
+    
+    &.active {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.05));
+      border-color: rgba(139, 92, 246, 0.25);
+      color: var(--primary);
+      font-weight: 600;
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.catalog-header {
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .results-count {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  gap: 16px;
+  
+  .empty-icon {
+    font-size: 3.5rem;
+    color: var(--text-muted);
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+  }
+  
+  p {
+    color: var(--text-secondary);
+    max-width: 300px;
+  }
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  gap: 16px;
+  color: var(--text-secondary);
+  
+  .spinner {
+    font-size: 2.5rem;
+    color: var(--primary);
+  }
+}
+
+@media (max-width: 992px) {
+  .catalog-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .sidebar {
+    position: static;
+    
+    .category-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    
+    .category-btn {
+      width: auto;
+    }
+  }
+}

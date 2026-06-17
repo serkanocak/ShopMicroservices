@@ -1,0 +1,17 @@
+{
+  "/catalog-service": {
+    "target": "https://localhost:6064",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/basket-service": {
+    "target": "https://localhost:6064",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ordering-service": {
+    "target": "https://localhost:6064",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

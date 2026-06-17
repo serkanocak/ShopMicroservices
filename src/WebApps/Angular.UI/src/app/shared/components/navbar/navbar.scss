@@ -1,0 +1,140 @@
+.navbar {
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+  height: var(--header-height);
+  margin: 16px 20px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-family-title);
+    
+    .logo-icon {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.7rem;
+    }
+    
+    .logo-text {
+      color: var(--text-primary);
+      
+      .logo-highlight {
+        background: linear-gradient(135deg, var(--secondary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 6px 0;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width var(--transition-normal);
+      }
+
+      &:hover {
+        color: var(--text-primary);
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &.active {
+        color: var(--text-primary);
+        font-weight: 600;
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      transition: all var(--transition-normal);
+      
+      &:hover {
+        background: rgba(139, 92, 246, 0.1);
+        border-color: var(--primary);
+        color: var(--text-primary);
+        transform: scale(1.05);
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    margin: 8px;
+    height: 70px;
+    
+    .navbar-links {
+      display: none; /* simple responsive toggle is omitted for now, link is visible or we can style better later */
+    }
+  }
+}

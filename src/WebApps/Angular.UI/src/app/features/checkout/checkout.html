@@ -1,0 +1,218 @@
+<div class="checkout-container container animate-fade-in">
+  <header class="checkout-header">
+    <h2>Checkout</h2>
+    <p>Complete your shipping and payment details to finish your order</p>
+  </header>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="checkout-layout">
+    <!-- Form Content -->
+    <div class="form-sections-container">
+      <!-- Shipping Address -->
+      <section class="form-section glass-panel">
+        <h3 class="section-title"><i class="fa-solid fa-truck-fast icon-highlight"></i> Shipping Address</h3>
+        
+        <div class="grid-2-col">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input 
+              id="firstName"
+              type="text" 
+              class="form-control" 
+              formControlName="firstName" 
+              placeholder="John"
+              [class.is-invalid]="checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid" />
+            @if (checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid) {
+              <span class="invalid-feedback">First name is required (min 2 chars)</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input 
+              id="lastName"
+              type="text" 
+              class="form-control" 
+              formControlName="lastName" 
+              placeholder="Doe"
+              [class.is-invalid]="checkoutForm.get('lastName')?.touched && checkoutForm.get('lastName')?.invalid" />
+            @if (checkoutForm.get('lastName')?.touched && checkoutForm.get('lastName')?.invalid) {
+              <span class="invalid-feedback">Last name is required (min 2 chars)</span>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="emailAddress">Email Address</label>
+          <input 
+            id="emailAddress"
+            type="email" 
+            class="form-control" 
+            formControlName="emailAddress" 
+            placeholder="john.doe@example.com"
+            [class.is-invalid]="checkoutForm.get('emailAddress')?.touched && checkoutForm.get('emailAddress')?.invalid" />
+          @if (checkoutForm.get('emailAddress')?.touched && checkoutForm.get('emailAddress')?.invalid) {
+            <span class="invalid-feedback">Please enter a valid email address</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="addressLine">Address Line</label>
+          <input 
+            id="addressLine"
+            type="text" 
+            class="form-control" 
+            formControlName="addressLine" 
+            placeholder="123 Main St, Apt 4B"
+            [class.is-invalid]="checkoutForm.get('addressLine')?.touched && checkoutForm.get('addressLine')?.invalid" />
+          @if (checkoutForm.get('addressLine')?.touched && checkoutForm.get('addressLine')?.invalid) {
+            <span class="invalid-feedback">Address line is required</span>
+          }
+        </div>
+
+        <div class="grid-3-col">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input 
+              id="country"
+              type="text" 
+              class="form-control" 
+              formControlName="country" 
+              placeholder="Turkey"
+              [class.is-invalid]="checkoutForm.get('country')?.touched && checkoutForm.get('country')?.invalid" />
+          </div>
+
+          <div class="form-group">
+            <label for="state">State / City</label>
+            <input 
+              id="state"
+              type="text" 
+              class="form-control" 
+              formControlName="state" 
+              placeholder="Istanbul"
+              [class.is-invalid]="checkoutForm.get('state')?.touched && checkoutForm.get('state')?.invalid" />
+            @if (checkoutForm.get('state')?.touched && checkoutForm.get('state')?.invalid) {
+              <span class="invalid-feedback">State is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input 
+              id="zipCode"
+              type="text" 
+              class="form-control" 
+              formControlName="zipCode" 
+              placeholder="34000"
+              [class.is-invalid]="checkoutForm.get('zipCode')?.touched && checkoutForm.get('zipCode')?.invalid" />
+            @if (checkoutForm.get('zipCode')?.touched && checkoutForm.get('zipCode')?.invalid) {
+              <span class="invalid-feedback">Zip code is required</span>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment details -->
+      <section class="form-section glass-panel">
+        <h3 class="section-title"><i class="fa-solid fa-credit-card icon-highlight"></i> Payment Details</h3>
+        
+        <div class="form-group">
+          <label for="cardName">Name on Card</label>
+          <input 
+            id="cardName"
+            type="text" 
+            class="form-control" 
+            formControlName="cardName" 
+            placeholder="John Doe"
+            [class.is-invalid]="checkoutForm.get('cardName')?.touched && checkoutForm.get('cardName')?.invalid" />
+          @if (checkoutForm.get('cardName')?.touched && checkoutForm.get('cardName')?.invalid) {
+            <span class="invalid-feedback">Cardholder name is required</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input 
+            id="cardNumber"
+            type="text" 
+            class="form-control" 
+            formControlName="cardNumber" 
+            placeholder="1111222233334444"
+            [class.is-invalid]="checkoutForm.get('cardNumber')?.touched && checkoutForm.get('cardNumber')?.invalid" />
+          @if (checkoutForm.get('cardNumber')?.touched && checkoutForm.get('cardNumber')?.invalid) {
+            <span class="invalid-feedback">Please enter a valid 16-digit card number</span>
+          }
+        </div>
+
+        <div class="grid-2-col">
+          <div class="form-group">
+            <label for="expiration">Expiration (MM/YY)</label>
+            <input 
+              id="expiration"
+              type="text" 
+              class="form-control" 
+              formControlName="expiration" 
+              placeholder="12/28"
+              [class.is-invalid]="checkoutForm.get('expiration')?.touched && checkoutForm.get('expiration')?.invalid" />
+            @if (checkoutForm.get('expiration')?.touched && checkoutForm.get('expiration')?.invalid) {
+              <span class="invalid-feedback">Invalid date (MM/YY)</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input 
+              id="cvv"
+              type="text" 
+              class="form-control" 
+              formControlName="cvv" 
+              placeholder="123"
+              [class.is-invalid]="checkoutForm.get('cvv')?.touched && checkoutForm.get('cvv')?.invalid" />
+            @if (checkoutForm.get('cvv')?.touched && checkoutForm.get('cvv')?.invalid) {
+              <span class="invalid-feedback">CVV (3 digits)</span>
+            }
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Order Sidebar Summary -->
+    <aside class="order-summary-sidebar glass-panel">
+      <h3>Order Summary</h3>
+      <div class="summary-items">
+        @for (item of basketService.cartItems(); track item.productId) {
+          <div class="summary-item">
+            <span class="item-name">{{ item.productName }} <span class="item-qty">x{{ item.quantity }}</span></span>
+            <span class="item-price">${{ item.price * item.quantity }}</span>
+          </div>
+        }
+      </div>
+      
+      <div class="totals">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span>${{ basketService.totalPrice() }}</span>
+        </div>
+        <div class="total-row">
+          <span>Shipping</span>
+          <span class="free-shipping">FREE</span>
+        </div>
+        <div class="total-row grand-total">
+          <span>Total</span>
+          <span>${{ basketService.totalPrice() }}</span>
+        </div>
+      </div>
+      
+      <button 
+        type="submit" 
+        class="btn-premium place-order-btn" 
+        [disabled]="isSubmitting() || checkoutForm.invalid">
+        @if (isSubmitting()) {
+          <i class="fa-solid fa-spinner fa-spin"></i> Processing...
+        } @else {
+          Place Order <i class="fa-solid fa-circle-check"></i>
+        }
+      </button>
+      <a routerLink="/cart" class="back-link">Back to Cart</a>
+    </aside>
+  </form>
+</div>

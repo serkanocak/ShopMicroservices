@@ -1,0 +1,53 @@
+<div class="catalog-container container animate-fade-in">
+  <aside class="sidebar glass-panel">
+    <h3 class="sidebar-title">Categories</h3>
+    <ul class="category-list">
+      <li class="category-item">
+        <button 
+          class="category-btn" 
+          [class.active]="selectedCategory() === null" 
+          (click)="selectCategory(null)">
+          All Products
+        </button>
+      </li>
+      @for (cat of categoryList(); track cat) {
+        <li class="category-item">
+          <button 
+            class="category-btn" 
+            [class.active]="selectedCategory() === cat" 
+            (click)="selectCategory(cat)">
+            {{ cat }}
+          </button>
+        </li>
+      }
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="catalog-header">
+      <h2>Catalog</h2>
+      <p class="results-count">Showing {{ filteredProducts().length }} products</p>
+    </header>
+
+    @if (isLoading()) {
+      <div class="loading-state">
+        <i class="fa-solid fa-circle-notch fa-spin spinner"></i>
+        <p>Fetching our finest goods...</p>
+      </div>
+    } @else {
+      @if (filteredProducts().length === 0) {
+        <div class="empty-state glass-panel">
+          <i class="fa-solid fa-folder-open empty-icon"></i>
+          <h3>No products found</h3>
+          <p>We couldn't find any products in this category.</p>
+        </div>
+      } @else {
+        <div class="products-grid">
+          @for (product of filteredProducts(); track product.id) {
+            <app-product-card [product]="product" />
+          }
+        </div>
+      }
+    }
+  </main>
+</div>
