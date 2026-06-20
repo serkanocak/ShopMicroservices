@@ -148,22 +148,15 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
-  shopping.web:
+  angular.ui:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
+      - NODE_ENV=development
       - ApiSettings__GatewayAddress=http://yarpapigateway:8080
-      - ElasticConfiguration__Uri=http://elasticsearch:9200
     depends_on:
       - yarpapigateway
-      - elasticsearch
     ports:
       - "6005:8080"
       - "6065:8081"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   elasticsearch:
     container_name: elasticsearch
@@ -186,16 +179,6 @@ services:
       - elasticsearch
     ports:
       - "5601:5601"
-
-  angular.ui:
-    environment:
-      - NODE_ENV=development
-      - ApiSettings__GatewayAddress=http://yarpapigateway:8080
-    depends_on:
-      - yarpapigateway
-    ports:
-      - "6006:80"
-      - "6066:81"
 
 volumes:
   postgres_catalog:

@@ -45,23 +45,17 @@ services:
       context: .
       dockerfile: ApiGateways/YarpApiGateway/Dockerfile
 
-  shopping.web:
-    image: ${DOCKER_REGISTRY-}shoppingweb
+  angular.ui:
+    image: ${DOCKER_REGISTRY-}angularui
     build:
       context: .
-      dockerfile: WebApps/Shopping.Web/Dockerfile
+      dockerfile: WebApps/Angular.UI/Dockerfile
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.13.0
-
-  angular.ui:
-    image: ${DOCKER_REGISTRY-}angularui
-    build:
-      context: WebApps/Angular.UI
-      dockerfile: Dockerfile
 
 volumes:
   postgres_catalog:

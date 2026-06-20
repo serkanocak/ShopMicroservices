@@ -1,4 +1,4 @@
-﻿
+
 namespace Catalog.API.Products.UpdateProduct;
 
 public record UpdateProductCommand(Guid Id, string Name, List<string> Category, string Description, string ImageFile, decimal Price)
@@ -20,13 +20,19 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
     }
 }
 
-internal class UpdateProductCommandHandler
-    (IDocumentSession session)
+public class UpdateProductCommandHandler
     : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
+    private readonly IDocumentSession _session;
+
+    public UpdateProductCommandHandler(IDocumentSession session)
+    {
+        _session = session;
+    }
+
     public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
-        var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
+        var product = await _session.LoadAsync<Product>(command.Id, cancellationToken);
 
         if (product is null)
         {
@@ -39,8 +45,8 @@ internal class UpdateProductCommandHandler
         product.ImageFile = command.ImageFile;
         product.Price = command.Price;
 
-        session.Update(product);
-        await session.SaveChangesAsync(cancellationToken);
+        _session.Update(product);
+        await _session.SaveChangesAsync(cancellationToken);
 
         return new UpdateProductResult(true);
     }

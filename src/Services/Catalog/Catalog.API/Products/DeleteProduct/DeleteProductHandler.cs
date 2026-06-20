@@ -1,4 +1,4 @@
-﻿
+
 namespace Catalog.API.Products.DeleteProduct;
 
 public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
@@ -12,14 +12,20 @@ public class DeleteProductCommandValidator : AbstractValidator<DeleteProductComm
     }
 }
 
-internal class DeleteProductCommandHandler
-    (IDocumentSession session)
+public class DeleteProductCommandHandler
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
+    private readonly IDocumentSession _session;
+
+    public DeleteProductCommandHandler(IDocumentSession session)
+    {
+        _session = session;
+    }
+
     public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
-        session.Delete<Product>(command.Id);
-        await session.SaveChangesAsync(cancellationToken);
+        _session.Delete<Product>(command.Id);
+        await _session.SaveChangesAsync(cancellationToken);
 
         return new DeleteProductResult(true);
     }

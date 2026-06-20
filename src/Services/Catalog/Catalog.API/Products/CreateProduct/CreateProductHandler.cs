@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.Products.CreateProduct;
+namespace Catalog.API.Products.CreateProduct;
 
 public record CreateProductCommand(string Name, List<string> Category, string Description, string ImageFile, decimal Price)
     : ICommand<CreateProductResult>;
@@ -15,10 +15,16 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
     }
 }
 
-internal class CreateProductCommandHandler
-    (IDocumentSession session)
+public class CreateProductCommandHandler
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
+    private readonly IDocumentSession _session;
+
+    public CreateProductCommandHandler(IDocumentSession session)
+    {
+        _session = session;
+    }
+
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         //create Product entity from command object
@@ -35,8 +41,8 @@ internal class CreateProductCommandHandler
         };
         
         //save to database
-        session.Store(product);
-        await session.SaveChangesAsync(cancellationToken);
+        _session.Store(product);
+        await _session.SaveChangesAsync(cancellationToken);
 
         //return result
         return new CreateProductResult(product.Id);
